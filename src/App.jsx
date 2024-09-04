@@ -11,17 +11,25 @@ const App = () => {
 
   const onAddItems = (item) => {
     const existItem = cartItems.find(c => c.id === item.id)
-    console.log("EXIST_ITEM", existItem);
-    
 
     if (existItem) {
       const newData = cartItems.map(c => c.id === item.id ? { ...existItem, quanity: existItem.quanity + 1 } : c)
-      console.log("ADD_QUANTITY_EXIST_ITEM", newData);
       setCartItems(newData)
-    } else { 
-      const newData = [...cartItems, {...item, quantity: 1}]
-      console.log("ADD_ITEM", newData);
+    } else {
+      const newData = [...cartItems, { ...item, quantity: 1 }]
       setCartItems(newData)
+    }
+  }
+
+  const onRemoveItem = (item) => {
+    const existItem = cartItems.find(c => c.id === item.id)
+
+    if (existItem.quanity === 1) {
+      const newData = cartItems.filter(c => c.id !== existItem.id)
+      setCartItems(newData)
+    } else {
+      const newDate = cartItems.map(c => c.id === existItem.id ? { ...existItem, quantity: existItem.quanity - 1 } : c)
+      setCartItems(newDate)
     }
   }
 
@@ -31,7 +39,7 @@ const App = () => {
       <Cart />
       <div className="cards__container">
         {courses.map((course) => (
-          <Card key={course.id} course={course} onAddItems={onAddItems} />
+          <Card key={course.id} course={course} onAddItems={onAddItems} onRemoveItem={onRemoveItem} />
         ))}
       </div>
     </>

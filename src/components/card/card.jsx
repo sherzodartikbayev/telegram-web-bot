@@ -1,7 +1,7 @@
 import Button from "../button/button"
 import "./card.css"
 
-const Card = ({ course }) => {
+const Card = ({ course, onAddItems, onRemoveItem }) => {
 
   return (
     <div className="card">
@@ -24,8 +24,8 @@ const Card = ({ course }) => {
       <div className="hr"></div>
 
       <div className="btn__container">
-        <Button title={'+'} type={'add'} />
-        <Button title={'-'} type={'remove'} />
+        <Button title={'+'} onClick={() => onAddItems(course)} type={'add'} />
+        <Button title={'-'} onCLick={() => onRemoveItem(course)} type={'remove'} />
       </div>
     </div>
   )
