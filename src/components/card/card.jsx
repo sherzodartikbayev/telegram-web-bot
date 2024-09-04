@@ -2,6 +2,7 @@ import Button from "../button/button"
 import "./card.css"
 
 const Card = ({ course }) => {
+
   return (
     <div className="card">
       <span className="card__badge">1</span>
@@ -11,7 +12,7 @@ const Card = ({ course }) => {
       </div>
 
       <div className="card__body">
-        <h5 className="card__title">{course.title}</h5>
+        <h2 className="card__title">{course.title}</h2>
         <div className="card__price">
           {course.price.toLocaleString("en-US", {
             style: 'currency',
