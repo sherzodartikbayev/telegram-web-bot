@@ -2,7 +2,7 @@ import { totalPrice } from "../../units/total-price"
 import Button from "../button/button"
 import "./cart.css"
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, onCheckOut }) => {
   return (
     <div className="cart__container">
       <p>
@@ -13,7 +13,8 @@ const Cart = ({ cartItems }) => {
         })}
       </p>
 
-      <Button title={`${cartItems.length === 0 ? "Buyurtma berish" : "To'lov"}`} disable={cartItems.length === 0 ? true : false} type={"checkout"} />
+      <Button 
+      title={`${cartItems.length === 0 ? "Buyurtma berish" : "To'lov"}`} disable={cartItems.length === 0 ? true : false} type={"checkout"} onClick={onCheckOut} />
     </div>
   )
 }
