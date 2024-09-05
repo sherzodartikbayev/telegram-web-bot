@@ -50,3 +50,7 @@
 .btn.checkout:active{
   background-color: rgb(30, 93, 41);
 }
+
+.btn.disabled {
+  opacity: 0.5;
+}

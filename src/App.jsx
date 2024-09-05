@@ -9,11 +9,11 @@ const courses = getData()
 const App = () => {
   const [cartItems, setCartItems] = useState([])
 
-  const onAddItems = (item) => {
+  const onAddItem = (item) => {
     const existItem = cartItems.find(c => c.id === item.id)
 
     if (existItem) {
-      const newData = cartItems.map(c => c.id === item.id ? { ...existItem, quanity: existItem.quanity + 1 } : c)
+      const newData = cartItems.map(c => c.id === item.id ? { ...existItem, quantity: existItem.quantity + 1 } : c)
       setCartItems(newData)
     } else {
       const newData = [...cartItems, { ...item, quantity: 1 }]
@@ -24,11 +24,11 @@ const App = () => {
   const onRemoveItem = (item) => {
     const existItem = cartItems.find(c => c.id === item.id)
 
-    if (existItem.quanity === 1) {
+    if (existItem.quantity === 1) {
       const newData = cartItems.filter(c => c.id !== existItem.id)
       setCartItems(newData)
     } else {
-      const newDate = cartItems.map(c => c.id === existItem.id ? { ...existItem, quantity: existItem.quanity - 1 } : c)
+      const newDate = cartItems.map(c => c.id === existItem.id ? { ...existItem, quantity: existItem.quantity - 1 } : c)
       setCartItems(newDate)
     }
   }
@@ -36,10 +36,10 @@ const App = () => {
   return (
     <>
       <h1 className="heading">Sammi kurslari</h1>
-      <Cart />
+      <Cart cartItems={cartItems} />
       <div className="cards__container">
         {courses.map((course) => (
-          <Card key={course.id} course={course} onAddItems={onAddItems} onRemoveItem={onRemoveItem} />
+          <Card key={course.id} course={course} onAddItem={onAddItem} onRemoveItem={onRemoveItem} />
         ))}
       </div>
     </>
